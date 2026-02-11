@@ -1,0 +1,22 @@
+{
+  "Group": "Reydder",
+  "Name": "HytalePlugin",
+  "Version": "0.0.2",
+  "Description": "An example plugin for HyTale!",
+  "Authors": [
+    {
+      "Name": "It's you!"
+    }
+  ],
+  "Website": "example.org",
+  "ServerVersion": "*",
+  "Dependencies": {
+
+  },
+  "OptionalDependencies": {
+
+  },
+  "DisabledByDefault": false,
+  "Main": "com.reydder.MyPlugin",
+  "IncludesAssetPack": true
+}

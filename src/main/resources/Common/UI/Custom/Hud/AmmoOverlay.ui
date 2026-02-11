@@ -1,0 +1,14 @@
+$Common = "../Common.ui";
+
+Group #AmmoOverlay {
+    Anchor: (Full: 0);
+    Padding: (Full: 40);
+    LayoutMode: MiddleCenter;
+
+
+    Label #AmmoIndicatior {
+        Style: (FontSize: 20, RenderBold: true);
+        Anchor: (Top: 700);
+        Text: "Hello world";
+    }
+}

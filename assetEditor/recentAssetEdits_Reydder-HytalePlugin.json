@@ -1,0 +1,207 @@
+{
+  "Assets": [
+    {
+      "Path": "Server\\Item\\Block\\Sets\\MyBlock.json",
+      "State": "Deleted",
+      "LastModificationTimestamp": "2026-01-18T10:33:17.278866400Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\ScriptedBrushes\\Hello_Brush.json",
+      "State": "Deleted",
+      "LastModificationTimestamp": "2026-01-20T21:42:30.688864Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Projectiles\\Hypixel\\Minigames\\GunPvP\\GunPvP_Assault_Rifle_Bullet.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-25T18:38:44.572173300Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Interactions\\Weapons\\Gun\\Attacks\\Shoot\\Gun_Shoot_Fail.json",
+      "State": "Deleted",
+      "LastModificationTimestamp": "2026-02-09T18:33:15.001794400Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Interactions\\Double_Jump.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-24T15:03:13.446451700Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Common\\Items\\Hypixel\\Minigames\\GunPvP\\Weapons\\Handguns\\Handgun.blockymodel",
+      "State": "New",
+      "LastModificationTimestamp": "2026-01-22T19:20:24.349362300Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Items\\Bench\\Bench_Weapon.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-25T14:47:13.640974200Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Items\\Weapon\\Arrow\\Weapon_Arrow_Crude.json",
+      "State": "New",
+      "LastModificationTimestamp": "2026-01-25T14:39:38.045178100Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Entity\\Stats\\Refile_Ammo.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-09T15:21:44.837808100Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Drops\\NPCs\\Beast\\Drop_Yeti.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-18T18:30:47.988945500Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Items\\Hypixel\\Minigames\\GunPvP\\Weapon_Handgun.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-09T19:21:32.300128600Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Items\\Weapon\\Gun\\Weapon_Gun_Blunderbuss.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-24T15:00:57.827045400Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Interactions\\Weapons\\Gun\\Attacks\\Shoot\\Gun_Shoot.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-09T19:06:21.907422800Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Common\\NPC\\Beast\\Bear_Grizzly\\Models\\Texture.png",
+      "State": "New",
+      "LastModificationTimestamp": "2026-01-20T21:10:21.713534700Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Items\\Weapon\\Gun\\Weapon_Bullet.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-25T15:35:41.937832600Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Animations\\Rifle.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-09T18:56:09.256105500Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Items\\Hypixel\\Minigames\\GunPvP\\Weapon_Grenade_Frag.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-25T14:58:06.241149Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Items\\Furniture\\Crude\\Furniture_Crude_Chest_Small.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-24T17:03:29.978605500Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Drops\\NPCs\\Beast\\Drop_Bear_Grizzly.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-18T11:11:14.582154200Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\NPC\\Roles\\Creature\\Mammal\\Bear_Grizzly.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-24T16:12:44.493267100Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Interactions\\Weapons\\Gun\\Attacks\\Shoot\\Gun_Shoot_Cost.json",
+      "State": "Deleted",
+      "LastModificationTimestamp": "2026-02-09T18:33:31.021615700Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Entity\\Stats\\Rifle_Ammo.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-10T23:04:13.667096100Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\ScriptedBrushes\\CustomBrush.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-22T19:12:50.792054900Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Items\\Weapon\\Gun\\Weapon_Gun_Blunderbuss_Rusty.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-24T16:24:40.315836600Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Common\\NPC\\Beast\\Bear_Polar\\Models\\Texture.png",
+      "State": "New",
+      "LastModificationTimestamp": "2026-01-20T21:11:31.681517800Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\ScriptedBrushes\\HelloBrush.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-20T22:40:39.363309100Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\ScriptedBrushes\\BoulderBrush.json",
+      "State": "New",
+      "LastModificationTimestamp": "2026-01-20T21:38:18.157329200Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Item\\Items\\Hypixel\\Minigames\\GunPvP\\Weapon_Assault_Rifle.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-11T14:25:48.158691900Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Common\\Icons\\ItemsGenerated\\Weapon_Bullet.png",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-01-25T15:34:37.066068500Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    }
+  ]
+}
