@@ -26,6 +26,7 @@ import com.reydder.posion.PoisonCommand;
 import com.reydder.posion.PoisonComponent;
 import com.reydder.posion.PoisonSystem;
 import com.reydder.posion.ShowHudCommand;
+import com.reydder.shop.commands.OpenShopCommand;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 import java.util.Arrays;
@@ -67,6 +68,8 @@ public class MyPlugin extends JavaPlugin {
 
         this.getCodecRegistry(Interaction.CODEC).register("ReloadInteraction", ReloadInteraction.class, ReloadInteraction.getCODEC());
         this.getCodecRegistry(Interaction.CODEC).register("ReloadCondition", ReloadConditionInteraction.class, ReloadConditionInteraction.getCODEC());
+
+        this.getCommandRegistry().registerCommand(new OpenShopCommand());
 
         int[] omittedIds = {3, 108};
 

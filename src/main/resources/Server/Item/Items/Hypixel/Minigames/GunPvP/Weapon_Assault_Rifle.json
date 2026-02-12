@@ -48,12 +48,11 @@
     "Ability3": {
       "Cooldown": {
         "Id": "Reload",
-        "Cooldown": 0
+        "Cooldown": 0.5
       },
       "Interactions": [
         {
           "Type": "ReloadCondition",
-          "Failed": "Gun_Shoot_Fail",
           "Next": {
             "Type": "Simple",
             "Effects": {
@@ -70,9 +69,11 @@
                 "Secondary"
               ]
             }
-          }
+          },
+          "Failed": "Gun_Shoot_Fail"
         }
-      ]
+      ],
+      "RequireNewClick": true
     }
   },
   "InteractionVars": {

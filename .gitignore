@@ -45,3 +45,10 @@ bin/
 ### Hytale ###
 universe
 logs
+auth.enc
+permissions.json
+assetEditor/
+whitelist.json
+config.json
+config.json.bak
+bans.json
