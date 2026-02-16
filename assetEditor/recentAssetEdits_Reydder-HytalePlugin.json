@@ -15,6 +15,13 @@
       "LastModificationUsername": "Reydder"
     },
     {
+      "Path": "Server\\NPC\\Roles\\Intelligent\\Passive\\Klops_Weapon_Merchant.json",
+      "State": "New",
+      "LastModificationTimestamp": "2026-02-13T17:21:43.747981100Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
       "Path": "Server\\ScriptedBrushes\\Hello_Brush.json",
       "State": "Deleted",
       "LastModificationTimestamp": "2026-01-20T21:42:30.688864Z",
@@ -36,6 +43,20 @@
       "LastModificationUsername": "Reydder"
     },
     {
+      "Path": "Server\\Drops\\NPCs\\Undead\\Drop_Zombie.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-13T11:50:01.310222500Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\NPC\\Roles\\Intelligent\\Passive\\Klops_Merchant.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-13T20:00:05.488478Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
       "Path": "Server\\Item\\Interactions\\Double_Jump.json",
       "State": "Changed",
       "LastModificationTimestamp": "2026-01-24T15:03:13.446451700Z",
@@ -43,9 +64,37 @@
       "LastModificationUsername": "Reydder"
     },
     {
+      "Path": "Server\\NPC\\Roles\\Intelligent\\Passive\\Klops_Merchant_Weapon.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-13T17:33:28.638626500Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\NPC\\Roles\\Intelligent\\Passive\\Klops_Merch.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-13T17:44:27.886092200Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\NPC\\Roles\\Template_Goblin_Ogre_Tutorial.json",
+      "State": "New",
+      "LastModificationTimestamp": "2026-02-13T17:48:38.220405100Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
       "Path": "Common\\Items\\Hypixel\\Minigames\\GunPvP\\Weapons\\Handguns\\Handgun.blockymodel",
       "State": "New",
       "LastModificationTimestamp": "2026-01-22T19:20:24.349362300Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\NPC\\Roles\\Intelligent\\Aggressive\\Goblin\\Templates\\Template_Goblin_Ogre.json",
+      "State": "New",
+      "LastModificationTimestamp": "2026-02-13T15:37:31.001653Z",
       "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
       "LastModificationUsername": "Reydder"
     },
@@ -64,9 +113,23 @@
       "LastModificationUsername": "Reydder"
     },
     {
+      "Path": "Server\\NPC\\Roles\\Goblin_Ogre_Tutorial.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-13T17:55:15.514609100Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
       "Path": "Server\\Entity\\Stats\\Refile_Ammo.json",
       "State": "Changed",
       "LastModificationTimestamp": "2026-02-09T15:21:44.837808100Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\NPC\\Roles\\Intelligent\\Passive\\Daniel.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-15T10:40:37.380675Z",
       "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
       "LastModificationUsername": "Reydder"
     },
@@ -88,6 +151,13 @@
       "Path": "Server\\Item\\Items\\Weapon\\Gun\\Weapon_Gun_Blunderbuss.json",
       "State": "Changed",
       "LastModificationTimestamp": "2026-01-24T15:00:57.827045400Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Drops\\NPCs\\Undead\\Drop_Zombie_Aberrant.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-13T11:51:36.345272Z",
       "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
       "LastModificationUsername": "Reydder"
     },
@@ -155,6 +225,13 @@
       "LastModificationUsername": "Reydder"
     },
     {
+      "Path": "Server\\NPC\\Roles\\Intelligent\\Passive\\Klops_Merchant_Daniel.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-16T15:38:22.683695Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
       "Path": "Server\\Entity\\Stats\\Rifle_Ammo.json",
       "State": "Changed",
       "LastModificationTimestamp": "2026-02-10T23:04:13.667096100Z",
@@ -165,6 +242,13 @@
       "Path": "Server\\ScriptedBrushes\\CustomBrush.json",
       "State": "Changed",
       "LastModificationTimestamp": "2026-01-22T19:12:50.792054900Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\NPC\\Roles\\Root_NPC_Goblin_Ogre_Attack.json",
+      "State": "Deleted",
+      "LastModificationTimestamp": "2026-02-13T17:54:49.521024Z",
       "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
       "LastModificationUsername": "Reydder"
     },
@@ -197,6 +281,27 @@
       "LastModificationUsername": "Reydder"
     },
     {
+      "Path": "Server\\NPC\\Roles\\_Core\\Daniel_Template.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-15T10:39:57.916800500Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Drops\\NPCs\\Undead\\Drop_Zombie_Aberrant_Small.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-13T11:51:38.918109700Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Drops\\NPCs\\Undead\\Drop_Zombie_Aberrant_Big.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-13T11:51:41.168903100Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
       "Path": "Server\\Item\\Items\\Hypixel\\Minigames\\GunPvP\\Weapon_Assault_Rifle.json",
       "State": "Changed",
       "LastModificationTimestamp": "2026-02-12T11:34:58.463707800Z",
@@ -207,6 +312,13 @@
       "Path": "Common\\Icons\\ItemsGenerated\\Weapon_Bullet.png",
       "State": "Changed",
       "LastModificationTimestamp": "2026-01-25T15:34:37.066068500Z",
+      "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
+      "LastModificationUsername": "Reydder"
+    },
+    {
+      "Path": "Server\\Models\\Intelligent\\Klops\\Klops.json",
+      "State": "Changed",
+      "LastModificationTimestamp": "2026-02-13T15:36:23.526945400Z",
       "LastModificationPlayerUuid": "5f69acb0-04e5-44c5-a656-7779f35db4d8",
       "LastModificationUsername": "Reydder"
     }

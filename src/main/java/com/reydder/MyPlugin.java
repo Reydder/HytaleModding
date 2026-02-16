@@ -15,6 +15,7 @@ import com.hypixel.hytale.server.core.modules.projectile.component.Projectile;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import com.hypixel.hytale.server.npc.NPCPlugin;
 import com.reydder.ammo.interactions.ReloadConditionInteraction;
 import com.reydder.ammo.interactions.ReloadInteraction;
 import com.reydder.ecsSystems.InputLogSystem;
@@ -26,6 +27,7 @@ import com.reydder.posion.PoisonCommand;
 import com.reydder.posion.PoisonComponent;
 import com.reydder.posion.PoisonSystem;
 import com.reydder.posion.ShowHudCommand;
+import com.reydder.shop.Instructions.Actions.BuilderActionOpenWeaponShop;
 import com.reydder.shop.commands.OpenShopCommand;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -53,7 +55,10 @@ public class MyPlugin extends JavaPlugin {
         this.getCommandRegistry().registerCommand(new MyCommand("test", ""));
         this.getCommandRegistry().registerCommand(new OtherCommand("hello", ""));
         componentType = this.getEntityStoreRegistry().registerComponent(PoisonComponent.class, PoisonComponent::new);
-        this.getEntityStoreRegistry().registerSystem(new PoisonSystem(this.componentType));
+
+        //this.getEntityStoreRegistry().registerSystem(new PoisonSystem(this.componentType));
+        this.getEntityStoreRegistry().registerSystem(new InputLogSystem(componentType));
+        this.getEntityStoreRegistry().registerSystem(new UpdateAmmoIndicatorSystem());
 
         this.getEventRegistry().registerGlobal(PlayerReadyEvent.class, OnPlayerReadyEvent::onPlayerReady);
 
@@ -70,6 +75,8 @@ public class MyPlugin extends JavaPlugin {
         this.getCodecRegistry(Interaction.CODEC).register("ReloadCondition", ReloadConditionInteraction.class, ReloadConditionInteraction.getCODEC());
 
         this.getCommandRegistry().registerCommand(new OpenShopCommand());
+
+        NPCPlugin.get().registerCoreComponentType("OpenWeaponShop", BuilderActionOpenWeaponShop::new);
 
         int[] omittedIds = {3, 108};
 
@@ -100,12 +107,6 @@ public class MyPlugin extends JavaPlugin {
 
     public ComponentType<EntityStore, PoisonComponent> getComponentType() {
         return this.componentType;
-    }
-
-    @Override
-    protected void start() {
-        this.getEntityStoreRegistry().registerSystem(new InputLogSystem(componentType));
-        this.getEntityStoreRegistry().registerSystem(new UpdateAmmoIndicatorSystem());
     }
 }
 
