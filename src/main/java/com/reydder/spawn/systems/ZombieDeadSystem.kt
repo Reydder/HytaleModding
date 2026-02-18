@@ -1,4 +1,4 @@
-package com.reydder.spawn
+package com.reydder.spawn.systems
 
 import com.hypixel.hytale.component.CommandBuffer
 import com.hypixel.hytale.component.Ref
@@ -7,7 +7,6 @@ import com.hypixel.hytale.component.query.Query
 import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.Message
 import com.hypixel.hytale.server.core.entity.UUIDComponent
-import com.hypixel.hytale.server.core.entity.entities.Player
 import com.hypixel.hytale.server.core.modules.entity.damage.Damage
 import com.hypixel.hytale.server.core.modules.entity.damage.DeathComponent
 import com.hypixel.hytale.server.core.modules.entity.damage.DeathSystems
@@ -15,9 +14,7 @@ import com.hypixel.hytale.server.core.universe.PlayerRef
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import com.hypixel.hytale.server.core.util.EventTitleUtil
 import com.hypixel.hytale.server.npc.entities.NPCEntity
-import com.hypixel.hytale.server.npc.systems.NPCSystems
-import java.util.UUID
-import javax.annotation.Nonnull
+import com.reydder.spawn.GameManager
 
 class ZombieDeadSystem: DeathSystems.OnDeathSystem() {
     override fun onComponentAdded(
@@ -26,18 +23,22 @@ class ZombieDeadSystem: DeathSystems.OnDeathSystem() {
         store: Store<EntityStore?>,
         p3: CommandBuffer<EntityStore?>
     ) {
-        val damageSource = deathComonent.deathInfo?.source
+        for ((game, gameConfig) in GameManager.get().activeGames) {
+            if (game != store.externalData.world.name) continue
 
-        if (damageSource is Damage.EntitySource) {
-            SpawnManager.get().addKilledZombie()
+            val damageSource = deathComonent.deathInfo?.source
 
-            val playerRef = store.getComponent(damageSource.ref, PlayerRef.getComponentType())
-            HytaleLogger.getLogger().atInfo().log("Zombie killed by ${playerRef?.username}")
-            HytaleLogger.getLogger().atInfo().log("Zombies killed ${SpawnManager.get().zombiesKilled.get()}")
+            if (damageSource is Damage.EntitySource) {
+                GameManager.get().zombieKilled()
 
+                val playerRef = store.getComponent(damageSource.ref, PlayerRef.getComponentType())
+                HytaleLogger.getLogger().atInfo().log("Zombie killed by ${playerRef?.username}")
+                HytaleLogger.getLogger().atInfo()
+                    .log("Zombies killed ${GameManager.Companion.get().zombiesKilled.get()}")
 
-            if (SpawnManager.get().zombiesKilled.get() == SpawnManager.get().zombies) {
-                EventTitleUtil.showEventTitleToPlayer(playerRef!!, Message.raw("Round 2"), Message.raw(""), true);
+                if (GameManager.get().zombiesKilled.get() == GameManager.get().zombies) {
+                    GameManager.get().nextRound(game)
+                }
             }
         }
     }

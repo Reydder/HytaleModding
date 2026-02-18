@@ -1,12 +1,47 @@
 {
   "maps": [
     {
-      "name": "test",
+      "worldName": "instance-NPC_Gym-6c3376de-34e8-48dc-b063-ee65bb9c6e22",
       "spawnPoints": [
         {
-          "x": 4,
+          "x": 3,
           "y": 103,
-          "z": 2
+          "z": -1
+        },
+        {
+          "x": -13,
+          "y": 104,
+          "z": 13
+        },
+        {
+          "x": -11,
+          "y": 103,
+          "z": -13
+        }
+      ],
+      "zombieTypes": [
+        "Zombie",
+        "Zombie_Sand",
+        "Zombie_Burnt"
+      ]
+    },
+    {
+      "worldName": "default",
+      "spawnPoints": [
+        {
+          "x": 3,
+          "y": 103,
+          "z": -1
+        },
+        {
+          "x": -13,
+          "y": 104,
+          "z": 13
+        },
+        {
+          "x": -11,
+          "y": 103,
+          "z": -13
         }
       ],
       "zombieTypes": [

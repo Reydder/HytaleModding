@@ -1,5 +1,5 @@
 import com.google.gson.Gson
-import com.reydder.spawn.Round
+import com.reydder.spawn.data.Round
 import org.junit.jupiter.api.Test
 import java.io.File
 import java.nio.file.FileSystems

@@ -11,7 +11,7 @@ import com.hypixel.hytale.server.core.universe.world.World
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
 import com.reydder.MyPlugin
 
-class PoisonCommand(description: String): AbstractPlayerCommand("poison",  description) {
+class PoisonCommand(): AbstractPlayerCommand("poison",  "") {
 
     override fun execute(
         ctx: CommandContext,

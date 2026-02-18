@@ -3,8 +3,6 @@ package com.reydder;
 import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.protocol.packets.interaction.SyncInteractionChain;
 import com.hypixel.hytale.protocol.packets.interaction.SyncInteractionChains;
-import com.hypixel.hytale.server.core.event.events.entity.LivingEntityInventoryChangeEvent;
-import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
 import com.hypixel.hytale.server.core.io.adapter.PacketAdapters;
 import com.hypixel.hytale.server.core.io.adapter.PacketWatcher;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Interaction;
@@ -23,7 +21,13 @@ import com.reydder.poison.PoisonCommand;
 import com.reydder.poison.PoisonComponent;
 import com.reydder.shop.Instructions.Actions.BuilderActionOpenWeaponShop;
 import com.reydder.shop.commands.OpenShopCommand;
-import com.reydder.spawn.*;
+import com.reydder.spawn.commands.ResetRoundCommand;
+import com.reydder.spawn.commands.StartRoundCommand;
+import com.reydder.spawn.events.NewRoundEvent;
+import com.reydder.spawn.events.NewRoundEventHandler;
+import com.reydder.spawn.systems.OnPlayerDeadSystem;
+import com.reydder.spawn.systems.SpawnSystem;
+import com.reydder.spawn.systems.ZombieDeadSystem;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 import java.util.Arrays;
@@ -48,6 +52,9 @@ public class MyPlugin extends JavaPlugin {
         // Rounds
         this.getEntityStoreRegistry().registerSystem(new ZombieDeadSystem());
         this.getEntityStoreRegistry().registerSystem(new SpawnSystem());
+        this.getEntityStoreRegistry().registerSystem(new OnPlayerDeadSystem());
+
+        this.getEventRegistry().registerGlobal(NewRoundEvent.class, NewRoundEventHandler::onNewRoundStarted);
 
         this.getCommandRegistry().registerCommand(new StartRoundCommand());
         this.getCommandRegistry().registerCommand(new ResetRoundCommand());
@@ -66,9 +73,9 @@ public class MyPlugin extends JavaPlugin {
         NPCPlugin.get().registerCoreComponentType("OpenWeaponShop", BuilderActionOpenWeaponShop::new);
 
         // Poison
-        this.getCommandRegistry().registerCommand(new PoisonCommand(""));
         componentType = this.getEntityStoreRegistry().registerComponent(PoisonComponent.class, PoisonComponent::new);
-        this.getEntityStoreRegistry().registerSystem(new ProjectilePoisonSystem(componentType));
+        //this.getCommandRegistry().registerCommand(new PoisonCommand());
+        //this.getEntityStoreRegistry().registerSystem(new ProjectilePoisonSystem(componentType));
 
         // Other
         registerPacketWatcher();

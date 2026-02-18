@@ -1,11 +1,10 @@
-package com.reydder.spawn
+package com.reydder.spawn.commands
 
-import com.hypixel.hytale.component.Store
+import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.command.system.CommandContext
 import com.hypixel.hytale.server.core.command.system.basecommands.AbstractAsyncCommand
-import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
+import com.reydder.spawn.GameManager
 import java.util.concurrent.CompletableFuture
-
 
 class StartRoundCommand: AbstractAsyncCommand("startround", "") {
     override fun executeAsync(context: CommandContext): CompletableFuture<Void?> {
@@ -15,7 +14,8 @@ class StartRoundCommand: AbstractAsyncCommand("startround", "") {
 
         if (store != null && world != null) {
             return this.runAsync(context, {
-                SpawnManager.get().startRound()
+                HytaleLogger.getLogger().atInfo().log("Started ${world.name}")
+                GameManager.get().startGame(world.name)
             }, world)
         }
 
