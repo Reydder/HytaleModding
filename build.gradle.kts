@@ -15,8 +15,12 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation(files("../../hytale_server/Server/HytaleServer.jar"))
-    //implementation(files("./mods/ZombiesGame.jar"))
     testImplementation(kotlin("test"))
+    implementation("com.google.code.gson:gson:2.13.2")
+
+    // Mod implementations
+    //implementation(files("./mods/ZombiesGame.jar"))
+    //implementation(files("./mods/MultipleHUD-1.0.5.jar"))
 }
 
 tasks.test {

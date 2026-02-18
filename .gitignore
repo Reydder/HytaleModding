@@ -47,9 +47,11 @@ universe
 logs
 auth.enc
 permissions.json
-assetEditor/
+assetEditor
 whitelist.json
 config.json
 config.json.bak
 bans.json
 mods
+.cache
+assetFiles

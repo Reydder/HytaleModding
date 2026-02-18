@@ -1,7 +1,6 @@
 package com.reydder;
 
 import com.hypixel.hytale.component.ComponentType;
-import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.protocol.packets.interaction.SyncInteractionChain;
 import com.hypixel.hytale.protocol.packets.interaction.SyncInteractionChains;
 import com.hypixel.hytale.server.core.event.events.entity.LivingEntityInventoryChangeEvent;
@@ -9,30 +8,25 @@ import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
 import com.hypixel.hytale.server.core.io.adapter.PacketAdapters;
 import com.hypixel.hytale.server.core.io.adapter.PacketWatcher;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.Interaction;
-import com.hypixel.hytale.server.core.modules.interaction.interaction.config.SimpleInstantInteraction;
-import com.hypixel.hytale.server.core.modules.interaction.interaction.config.SimpleInteraction;
 import com.hypixel.hytale.server.core.modules.projectile.component.Projectile;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.NPCPlugin;
-import com.reydder.ammo.interactions.ReloadConditionInteraction;
-import com.reydder.ammo.interactions.ReloadInteraction;
-import com.reydder.ecsSystems.InputLogSystem;
-import com.reydder.events.OnPlayerReadyEvent;
-import com.reydder.ammo.commands.ShowGUICommand;
-import com.reydder.ammo.systems.UpdateAmmoIndicatorSystem;
-import com.reydder.ammo.commands.UpdateGUICommand;
-import com.reydder.posion.PoisonCommand;
-import com.reydder.posion.PoisonComponent;
-import com.reydder.posion.PoisonSystem;
-import com.reydder.posion.ShowHudCommand;
+import com.reydder.guns.interactions.ReloadConditionInteraction;
+import com.reydder.guns.interactions.ReloadInteraction;
+import com.reydder.poison.ProjectilePoisonSystem;
+import com.reydder.guns.commands.ShowGUICommand;
+import com.reydder.guns.systems.UpdateAmmoIndicatorSystem;
+import com.reydder.guns.commands.UpdateGUICommand;
+import com.reydder.poison.PoisonCommand;
+import com.reydder.poison.PoisonComponent;
 import com.reydder.shop.Instructions.Actions.BuilderActionOpenWeaponShop;
 import com.reydder.shop.commands.OpenShopCommand;
+import com.reydder.spawn.*;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 import java.util.Arrays;
-import java.util.logging.Level;
 
 public class MyPlugin extends JavaPlugin {
 
@@ -51,33 +45,36 @@ public class MyPlugin extends JavaPlugin {
     protected void setup() {
         super.setup();
 
-        this.getCommandRegistry().registerCommand(new PoisonCommand(""));
-        this.getCommandRegistry().registerCommand(new MyCommand("test", ""));
-        this.getCommandRegistry().registerCommand(new OtherCommand("hello", ""));
-        componentType = this.getEntityStoreRegistry().registerComponent(PoisonComponent.class, PoisonComponent::new);
+        // Rounds
+        this.getEntityStoreRegistry().registerSystem(new ZombieDeadSystem());
+        this.getEntityStoreRegistry().registerSystem(new SpawnSystem());
 
-        //this.getEntityStoreRegistry().registerSystem(new PoisonSystem(this.componentType));
-        this.getEntityStoreRegistry().registerSystem(new InputLogSystem(componentType));
-        this.getEntityStoreRegistry().registerSystem(new UpdateAmmoIndicatorSystem());
+        this.getCommandRegistry().registerCommand(new StartRoundCommand());
+        this.getCommandRegistry().registerCommand(new ResetRoundCommand());
 
-        this.getEventRegistry().registerGlobal(PlayerReadyEvent.class, OnPlayerReadyEvent::onPlayerReady);
-
-        this.getCommandRegistry().registerCommand(new ShowHudCommand("showammo", ""));
-
-        this.getEventRegistry().registerGlobal(LivingEntityInventoryChangeEvent.class, (e) -> {
-            //HytaleLogger.getLogger().at(Level.INFO).log("Inventoru change");
-        });
-
+        // Guns
         this.getCommandRegistry().registerCommand(new ShowGUICommand("showgui"));
         this.getCommandRegistry().registerCommand(new UpdateGUICommand());
+
+        this.getEntityStoreRegistry().registerSystem(new UpdateAmmoIndicatorSystem());
 
         this.getCodecRegistry(Interaction.CODEC).register("ReloadInteraction", ReloadInteraction.class, ReloadInteraction.getCODEC());
         this.getCodecRegistry(Interaction.CODEC).register("ReloadCondition", ReloadConditionInteraction.class, ReloadConditionInteraction.getCODEC());
 
+        // Shop
         this.getCommandRegistry().registerCommand(new OpenShopCommand());
-
         NPCPlugin.get().registerCoreComponentType("OpenWeaponShop", BuilderActionOpenWeaponShop::new);
 
+        // Poison
+        this.getCommandRegistry().registerCommand(new PoisonCommand(""));
+        componentType = this.getEntityStoreRegistry().registerComponent(PoisonComponent.class, PoisonComponent::new);
+        this.getEntityStoreRegistry().registerSystem(new ProjectilePoisonSystem(componentType));
+
+        // Other
+        registerPacketWatcher();
+    }
+
+    private void registerPacketWatcher() {
         int[] omittedIds = {3, 108};
 
         PacketAdapters.registerInbound((PacketWatcher) (packetHandler, packet) -> {
@@ -98,12 +95,9 @@ public class MyPlugin extends JavaPlugin {
 
                     }*/
                 }
-
-
             }
         });
     }
-
 
     public ComponentType<EntityStore, PoisonComponent> getComponentType() {
         return this.componentType;

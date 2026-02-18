@@ -1,0 +1,19 @@
+{
+  "maps": [
+    {
+      "name": "test",
+      "spawnPoints": [
+        {
+          "x": 4,
+          "y": 103,
+          "z": 2
+        }
+      ],
+      "zombieTypes": [
+        "Zombie",
+        "Zombie_Sand",
+        "Zombie_Burnt"
+      ]
+    }
+  ]
+}
