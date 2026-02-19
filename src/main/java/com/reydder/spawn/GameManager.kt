@@ -1,8 +1,13 @@
 package com.reydder.spawn
 
 import com.google.gson.Gson
+import com.hypixel.hytale.component.RemoveReason
+import com.hypixel.hytale.component.Store
+import com.hypixel.hytale.logger.HytaleLogger
 import com.hypixel.hytale.server.core.HytaleServer
 import com.hypixel.hytale.server.core.universe.Universe
+import com.hypixel.hytale.server.core.universe.world.storage.EntityStore
+import com.hypixel.hytale.server.npc.entities.NPCEntity
 import com.reydder.spawn.data.GameConfig
 import com.reydder.spawn.events.NewRoundEvent
 import java.nio.file.Files
@@ -23,6 +28,9 @@ class GameManager private constructor() {
 
             return instance
         }
+
+        private const val TIME_TO_START_SPAWN = 15.0F
+        private const val SPAWN_TIME_INTERVAL = 10.0F
     }
 
     var activeGames: ConcurrentHashMap<String, GameConfig.MapConfig> = ConcurrentHashMap()
@@ -32,34 +40,38 @@ class GameManager private constructor() {
         private set
     var spawnedZombies: AtomicInteger = AtomicInteger(0)
         private set
-    var activeZombies: AtomicInteger = AtomicInteger(0)
 
     var round: Int = 0
         private set
     var zombies: Int = 0
         private set
-    var maxActiveZombies = 0
-        private set
-    var maxSpawnPerTick = 0
+    var spawnPerTick: Int = 0
         private set
     var timeToStartSpawning = 0.0F
+        private set
+    var spawnTimeInterval = 0F
+        private set
+    var resetSpawnTimeInterval = 0F
         private set
 
     fun startGame(worldName: String) {
         // Read GameConfig json file
         // TODO Configure path instead of hardcoding it
-        val path = Paths.get("").resolve("Rounds").resolve("GameConfig.json")
+        val path = Paths.get("").resolve("ZombiesGameConfig").resolve("GameConfig.json")
         val json = Files.readString(path)
 
         val gameConfig = Gson().fromJson(json, GameConfig::class.java)
         val mapConfig = gameConfig.maps.first { it.worldName == worldName }
 
-        round = 1
-        zombies = 1
-        maxActiveZombies = 2
-        maxSpawnPerTick = 1
-        timeToStartSpawning = 5.0F
         activeGames[worldName] = mapConfig
+
+        round = 1
+
+        zombies = mapConfig.zombiesStart
+        spawnPerTick = mapConfig.spawnPerTickStart
+        timeToStartSpawning = TIME_TO_START_SPAWN
+        spawnTimeInterval = 0F
+        resetSpawnTimeInterval = SPAWN_TIME_INTERVAL
 
         val world = Universe.get().worlds.get(worldName.lowercase()) ?: return
         val eventDispatcher = HytaleServer.get().eventBus.dispatchFor(NewRoundEvent::class.java)
@@ -70,45 +82,102 @@ class GameManager private constructor() {
         return spawnedZombies.get() < zombies
     }
 
+    @Synchronized
     fun zombieKilled() {
         zombiesKilled.incrementAndGet()
-        activeZombies.decrementAndGet()
     }
 
+    @Synchronized
     fun zombieSpawned() {
         spawnedZombies.incrementAndGet()
-        activeZombies.incrementAndGet()
     }
 
-    fun nextRound(game: String) {
+    fun nextRound(game: String, store: Store<EntityStore?>) {
+        val gameConfig = activeGames[game]
+
+        if (gameConfig == null) {
+            HytaleLogger.getLogger().atInfo().log("No game config found to begin next round for game: $game")
+            reset(game, store)
+            return
+        }
+
         round++
-        zombies++
-        maxActiveZombies++
-        maxSpawnPerTick++
+
+        HytaleLogger.getLogger().atInfo().log("Round ${round}")
+
+        zombies = (gameConfig.zombiesStart + ((round / gameConfig.roundsToIncreaseMaxZombies) * gameConfig.zombiesToIncrease))
+            .coerceAtMost(gameConfig.maxZombiesPerRound)
+
+        HytaleLogger.getLogger().atInfo().log("Zombies in round ${zombies}")
+
+        spawnPerTick = (gameConfig.spawnPerTickStart + ((round / gameConfig.roundsToIncreaseSPT) * gameConfig.spawnPerTickToIncrease))
+            .coerceAtMost(gameConfig.maxSpawnPerTick)
+
+        HytaleLogger.getLogger().atInfo().log("Spawn Per tick reset to ${spawnPerTick}")
+
         zombiesKilled.set(0)
-        activeZombies.set(0)
         spawnedZombies.set(0)
-        timeToStartSpawning = 5.0F
+        timeToStartSpawning = TIME_TO_START_SPAWN
+        spawnTimeInterval = 0F
+        resetSpawnTimeInterval = SPAWN_TIME_INTERVAL
 
         val world = Universe.get().worlds.get(game.lowercase()) ?: return
         val eventDispatcher = HytaleServer.get().eventBus.dispatchFor(NewRoundEvent::class.java)
         eventDispatcher?.dispatch(NewRoundEvent(world))
     }
 
+    @Synchronized
     fun decreaseTimeToStartSpawning(dt: Float) {
         timeToStartSpawning -= dt
     }
 
-    fun reset(game: String) {
+    @Synchronized
+    fun decreaseSpawnTimeInterval(dt: Float) {
+        spawnTimeInterval -= dt
+        //HytaleLogger.getLogger().atInfo().log("Spawn Time Interval reduced to ${spawnTimeInterval}")
+    }
+
+    @Synchronized
+    fun setNewReducedSpawnTimeInterval() {
+        resetSpawnTimeInterval -= 1F
+        spawnTimeInterval = resetSpawnTimeInterval.coerceAtLeast(3.0F)
+        //HytaleLogger.getLogger().atInfo().log("Spawn Time Interval reset to ${spawnTimeInterval}")
+    }
+
+    fun reset(game: String, store: Store<EntityStore?>) {
         round = 0
+
         zombies = 0
-        maxActiveZombies = 0
-        maxSpawnPerTick = 0
+        spawnPerTick = 0
+
         zombiesKilled.set(0)
-        activeZombies.set(0)
         spawnedZombies.set(0)
         timeToStartSpawning = 0.0F
+        spawnTimeInterval = 0F
+        resetSpawnTimeInterval = 0.0F
+
         activeGames.remove(game)
+
+        removeAllRemainingEnemies(store)
+    }
+
+    fun removeAllRemainingEnemies(store: Store<EntityStore?>) {
+        val world = store.externalData.world
+
+        // Remove all current zombies
+        store.forEachEntityParallel { index, archetypeChunk, commandBuffer ->
+            val npcComponent = archetypeChunk.getComponent<NPCEntity>(index, NPCEntity.getComponentType()!!)
+            val name = npcComponent?.role?.roleName
+
+            if (name?.contains("Zombie") == true) {
+                val ref = archetypeChunk?.getReferenceTo(index)
+                ref?.let {
+                    world.execute {
+                        store.removeEntity(it, RemoveReason.REMOVE)
+                    }
+                }
+            }
+        }
     }
 
 }

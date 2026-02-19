@@ -6,18 +6,17 @@ import com.hypixel.hytale.server.core.command.system.basecommands.AbstractAsyncC
 import com.reydder.spawn.GameManager
 import java.util.concurrent.CompletableFuture
 
-class StartRoundCommand: AbstractAsyncCommand("startround", "") {
+class NextRoundCommand: AbstractAsyncCommand("nextround", "") {
     override fun executeAsync(context: CommandContext): CompletableFuture<Void?> {
         val ref = context.senderAsPlayerRef()
         val store = ref?.store
         val world = store?.getExternalData()?.world
 
-        HytaleLogger.getLogger().atInfo().log("Round started at Thread: ${Thread.currentThread().name}")
-
         if (store != null && world != null) {
             return this.runAsync(context, {
-                HytaleLogger.getLogger().atInfo().log("Round started at Thread: ${Thread.currentThread().name}")
-                GameManager.get().startGame(world.name)
+                HytaleLogger.getLogger().atInfo().log("Next round started at Thread: ${Thread.currentThread().name}")
+                GameManager.get().removeAllRemainingEnemies(store)
+                GameManager.get().nextRound(world.name, store)
             }, world)
         }
 

@@ -1,0 +1,24 @@
+{
+  "Type": "DamageEntity",
+  "DamageCalculator": {
+    "BaseDamage": {
+      "Physical": 5
+    }
+  },
+  "DamageEffects": {
+    "Knockback": {
+      "Type": "Directional",
+      "Force": 1.5,
+      "RelativeX": 0,
+      "RelativeZ": -10,
+      "VelocityY": 5,
+      "VelocityType": "Add"
+    },
+    "WorldSoundEventId": "SFX_Unarmed_Impact",
+    "WorldParticles": [
+      {
+        "SystemId": "Impact_Blade_01"
+      }
+    ]
+  }
+}

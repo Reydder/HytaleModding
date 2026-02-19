@@ -17,13 +17,51 @@
           "x": -11,
           "y": 103,
           "z": -13
+        },
+        {
+          "x": -15,
+          "y": 103,
+          "z": 0
+        },
+        {
+          "x": 13,
+          "y": 104,
+          "z": -14
+        },
+        {
+          "x": 10,
+          "y": 103,
+          "z": -1
+        },
+        {
+          "x": 14,
+          "y": 104,
+          "z": 14
+        },
+        {
+          "x": -24,
+          "y": 109,
+          "z": 7
+        },
+        {
+          "x": 1,
+          "y": 106,
+          "z": -12
         }
       ],
       "zombieTypes": [
         "Zombie",
         "Zombie_Sand",
-        "Zombie_Burnt"
-      ]
+        "Zombie_Frost"
+      ],
+      "zombiesStart": 15,
+      "maxZombiesPerRound": 45,
+      "roundsToIncreaseMaxZombies": 5,
+      "zombiesToIncrease": 6,
+      "spawnPerTickStart": 3,
+      "maxSpawnPerTick": 10,
+      "roundsToIncreaseSPT": 3,
+      "spawnPerTickToIncrease": 1
     },
     {
       "worldName": "default",

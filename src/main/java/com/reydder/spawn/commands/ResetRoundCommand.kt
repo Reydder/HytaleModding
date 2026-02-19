@@ -15,23 +15,7 @@ class ResetRoundCommand: AbstractAsyncCommand("resetround", "") {
 
         if (store != null && world != null) {
             return this.runAsync(commandContext, {
-                GameManager.get().reset(world.name)
-
-                // Remove all current zombies
-                store.forEachEntityParallel { index, archetypeChunk, commandBuffer ->
-                    val npcComponent = archetypeChunk.getComponent<NPCEntity>(index, NPCEntity.getComponentType()!!)
-                    val name = npcComponent?.role?.roleName
-
-                    if (name?.contains("Zombie") == true) {
-                        val ref = archetypeChunk?.getReferenceTo(index)
-                        ref?.let {
-                            world.execute {
-                                store.removeEntity(it, RemoveReason.REMOVE)
-                            }
-                        }
-                    }
-                }
-
+                GameManager.get().reset(world.name, store)
             }, world)
         }
 

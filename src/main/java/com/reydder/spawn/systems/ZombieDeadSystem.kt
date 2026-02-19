@@ -26,26 +26,27 @@ class ZombieDeadSystem: DeathSystems.OnDeathSystem() {
         for ((game, gameConfig) in GameManager.get().activeGames) {
             if (game != store.externalData.world.name) continue
 
+            GameManager.get().zombieKilled()
+
             val damageSource = deathComonent.deathInfo?.source
 
             if (damageSource is Damage.EntitySource) {
-                GameManager.get().zombieKilled()
-
                 val playerRef = store.getComponent(damageSource.ref, PlayerRef.getComponentType())
+                HytaleLogger.getLogger().atInfo().log("Zombie killed at Thread: ${Thread.currentThread().name}")
                 HytaleLogger.getLogger().atInfo().log("Zombie killed by ${playerRef?.username}")
-                HytaleLogger.getLogger().atInfo()
-                    .log("Zombies killed ${GameManager.Companion.get().zombiesKilled.get()}")
+                HytaleLogger.getLogger().atInfo().log("Zombies killed ${GameManager.Companion.get().zombiesKilled.get()}")
+            } else {
+                HytaleLogger.getLogger().atInfo().log("Zombie dead}")
+                HytaleLogger.getLogger().atInfo().log("Zombies killed ${GameManager.Companion.get().zombiesKilled.get()}")
+            }
 
-                if (GameManager.get().zombiesKilled.get() == GameManager.get().zombies) {
-                    GameManager.get().nextRound(game)
-                }
+            if (GameManager.get().zombiesKilled.get() == GameManager.get().zombies) {
+                GameManager.get().nextRound(game, store)
             }
         }
     }
 
-    override fun getQuery(): Query<EntityStore?>? {
+    override fun getQuery(): Query<EntityStore?> {
         return Query.and(NPCEntity.getComponentType(), UUIDComponent.getComponentType())
     }
-
-
 }

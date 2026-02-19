@@ -21,10 +21,11 @@ import com.reydder.poison.PoisonCommand;
 import com.reydder.poison.PoisonComponent;
 import com.reydder.shop.Instructions.Actions.BuilderActionOpenWeaponShop;
 import com.reydder.shop.commands.OpenShopCommand;
+import com.reydder.spawn.commands.NextRoundCommand;
 import com.reydder.spawn.commands.ResetRoundCommand;
 import com.reydder.spawn.commands.StartRoundCommand;
 import com.reydder.spawn.events.NewRoundEvent;
-import com.reydder.spawn.events.NewRoundEventHandler;
+import com.reydder.spawn.events.OnPlayerDeathEvent;
 import com.reydder.spawn.systems.OnPlayerDeadSystem;
 import com.reydder.spawn.systems.SpawnSystem;
 import com.reydder.spawn.systems.ZombieDeadSystem;
@@ -54,10 +55,12 @@ public class MyPlugin extends JavaPlugin {
         this.getEntityStoreRegistry().registerSystem(new SpawnSystem());
         this.getEntityStoreRegistry().registerSystem(new OnPlayerDeadSystem());
 
-        this.getEventRegistry().registerGlobal(NewRoundEvent.class, NewRoundEventHandler::onNewRoundStarted);
+        this.getEventRegistry().registerGlobal(NewRoundEvent.class, NewRoundEvent::onNewRoundStarted);
+        this.getEventRegistry().registerGlobal(OnPlayerDeathEvent.class, OnPlayerDeathEvent::onPlayerDeath);
 
         this.getCommandRegistry().registerCommand(new StartRoundCommand());
         this.getCommandRegistry().registerCommand(new ResetRoundCommand());
+        this.getCommandRegistry().registerCommand(new NextRoundCommand());
 
         // Guns
         this.getCommandRegistry().registerCommand(new ShowGUICommand("showgui"));
