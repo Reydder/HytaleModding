@@ -7,7 +7,7 @@
     0
   ],
   "StartState": "Idle",
-  "DefaultNPCAttitude": "Ignore",
+  "DefaultNPCAttitude": "Hostile",
   "DefaultPlayerAttitude": "Hostile",
   "Parameters": {
     "Appearance": {
@@ -355,7 +355,7 @@
                   ],
                   "Action": {
                     "Type": "State",
-                    "State": "Alerted"
+                    "State": "Angry"
                   }
                 }
               ]
@@ -364,7 +364,7 @@
               "Sensor": {
                 "Type": "Mob",
                 "GetPlayers": true,
-                "Range": 2,
+                "Range": 50,
                 "LockOnTarget": true,
                 "Filters": [
                   {
@@ -383,95 +383,6 @@
                 {
                   "Type": "State",
                   "State": "Angry"
-                }
-              ]
-            },
-            {
-              "Sensor": {
-                "Type": "And",
-                "Sensors": [
-                  {
-                    "Type": "Mob",
-                    "GetPlayers": true,
-                    "Range": 15,
-                    "LockOnTarget": true,
-                    "Filters": [
-                      {
-                        "Type": "LineOfSight"
-                      },
-                      {
-                        "Type": "ViewSector",
-                        "ViewSector": 100
-                      }
-                    ],
-                    "Prioritiser": {
-                      "Type": "Attitude",
-                      "AttitudesByPriority": [
-                        "Hostile"
-                      ]
-                    },
-                    "GetNPCs": false
-                  },
-                  {
-                    "Type": "Target",
-                    "TargetSlot": "LockedTarget",
-                    "Filters": [
-                      {
-                        "Type": "MovementState",
-                        "State": "Crouching"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "Actions": [
-                {
-                  "Type": "State",
-                  "State": "Alerted"
-                }
-              ]
-            },
-            {
-              "Sensor": {
-                "Type": "And",
-                "Sensors": [
-                  {
-                    "Type": "Mob",
-                    "GetPlayers": true,
-                    "Range": 15,
-                    "LockOnTarget": true,
-                    "Filters": [
-                      {
-                        "Type": "LineOfSight"
-                      }
-                    ],
-                    "Prioritiser": {
-                      "Type": "Attitude",
-                      "AttitudesByPriority": [
-                        "Hostile"
-                      ]
-                    },
-                    "GetNPCs": false
-                  },
-                  {
-                    "Type": "Not",
-                    "Sensor": {
-                      "Type": "Target",
-                      "TargetSlot": "LockedTarget",
-                      "Filters": [
-                        {
-                          "Type": "MovementState",
-                          "State": "Crouching"
-                        }
-                      ]
-                    }
-                  }
-                ]
-              },
-              "Actions": [
-                {
-                  "Type": "State",
-                  "State": "Alerted"
                 }
               ]
             }
@@ -569,44 +480,6 @@
                   "State": "Angry"
                 }
               ]
-            },
-            {
-              "Sensor": {
-                "Type": "And",
-                "Sensors": [
-                  {
-                    "Type": "Not",
-                    "Sensor": {
-                      "Type": "Mob",
-                      "GetPlayers": true,
-                      "Range": 20,
-                      "LockOnTarget": true,
-                      "Prioritiser": {
-                        "Type": "Attitude",
-                        "AttitudesByPriority": [
-                          "Hostile"
-                        ]
-                      },
-                      "GetNPCs": false
-                    }
-                  },
-                  {
-                    "Type": "Not",
-                    "Sensor": {
-                      "Type": "Beacon",
-                      "Message": "Zombie_Target",
-                      "Range": 80,
-                      "TargetSlot": "LockedTarget"
-                    }
-                  }
-                ]
-              },
-              "Actions": [
-                {
-                  "Type": "State",
-                  "State": "Idle"
-                }
-              ]
             }
           ]
         },
@@ -676,14 +549,6 @@
               }
             },
             {
-              "Reference": "Component_Instruction_Simple_Soft_Leash",
-              "Modify": {
-                "_ExportStates": [
-                  "Idle"
-                ]
-              }
-            },
-            {
               "Sensor": {
                 "Type": "Target"
               },
@@ -692,7 +557,7 @@
                 "SlowDownDistance": 1.4,
                 "StopDistance": 1.4,
                 "RelativeSpeed": 0.6,
-                "AbortDistance": 80
+                "DesiredAltitudeWeight": 1
               }
             },
             {
@@ -721,43 +586,6 @@
                 {
                   "Type": "State",
                   "State": "Chase"
-                }
-              ]
-            },
-            {
-              "Sensor": {
-                "Type": "And",
-                "Sensors": [
-                  {
-                    "Type": "Not",
-                    "Sensor": {
-                      "Type": "Mob",
-                      "GetPlayers": true,
-                      "Range": 20,
-                      "LockOnTarget": true,
-                      "Prioritiser": {
-                        "Type": "Attitude",
-                        "AttitudesByPriority": [
-                          "Hostile"
-                        ]
-                      },
-                      "GetNPCs": false
-                    }
-                  },
-                  {
-                    "Type": "Not",
-                    "Sensor": {
-                      "Type": "Beacon",
-                      "Message": "Zombie_Target",
-                      "Range": 80
-                    }
-                  }
-                ]
-              },
-              "Actions": [
-                {
-                  "Type": "State",
-                  "State": "Alerted"
                 }
               ]
             }

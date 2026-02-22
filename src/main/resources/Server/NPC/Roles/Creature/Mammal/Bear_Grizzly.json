@@ -19,11 +19,11 @@
       "Description": "Max Health."
     },
     "ViewRange": {
-      "Value": 12,
+      "Value": 50,
       "Description": "View Range."
     },
     "HearingRange": {
-      "Value": 8,
+      "Value": 40,
       "Description": "Hearing Range."
     },
     "MaxSpeed": {
@@ -51,7 +51,7 @@
     "DropList": {
       "Compute": "DropList"
     },
-    "MaxHealth": 100000000,
+    "MaxHealth": 100,
     "MaxSpeed": {
       "Compute": "MaxSpeed"
     },

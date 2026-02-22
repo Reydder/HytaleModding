@@ -34,14 +34,13 @@ class SpawnSystem: DelayedSystem<EntityStore>(1.0F) {
 
                 if (gameManager.timeToStartSpawning <= 0.0F) {
                     if (gameManager.spawnTimeInterval <= 0F) {
-                        val zombieType = gameConfig.zombieTypes.random()
-
                         val zombieToSpawn = Math.min(
                             gameManager.spawnPerTick,
                             gameManager.zombies - gameManager.spawnedZombies.get()
                         )
 
                         for (i in 0..<zombieToSpawn) {
+                            val zombieType = gameConfig.zombieTypes.random()
                             val closestSpawnPoints = getPlayersClosestSpawnPoints(store, gameConfig.spawnPoints)
 
                             if (closestSpawnPoints.isEmpty()) break
@@ -95,7 +94,7 @@ class SpawnSystem: DelayedSystem<EntityStore>(1.0F) {
                 val vector3d = Vector3d(position.x.toDouble(), position.y.toDouble(), position.z.toDouble())
                 val distance = transformComponent.position.distanceTo(vector3d)
 
-                if (distance <= 10.0) {
+                if (distance <= 25.0) {
                     closestSpawnPoints.add(position)
                 }
             }
