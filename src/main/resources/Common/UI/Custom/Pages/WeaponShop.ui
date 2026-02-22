@@ -35,7 +35,7 @@ $C.@Container {
       }
 
       Label {
-        Text: "50$";
+        Text: "100$";
       }
 
       Group {
@@ -78,6 +78,42 @@ $C.@Container {
       }
 
       $C.@TextButton #BuyRifle {
+        Anchor: (...@Anchor, Width: 130, Height: 30);
+        Text: "Buy";
+        Disabled: false;
+      }
+    }
+
+    Group {
+      Anchor: (Width: 20, Height: 0);
+    }
+
+    Group #RifleItem {
+      LayoutMode: Top;
+
+      ItemIcon {
+        Anchor: (Width: 70, Height: 70);
+        Padding: (Full: 20);
+        ItemId: "Full_Heal_Potion";
+      }
+
+      Group {
+        Anchor: (Width: 0, Height: 20);
+      }
+
+      Label {
+        Text: "Medkit";
+      }
+
+      Label {
+        Text: "2000$";
+      }
+
+      Group {
+        Anchor: (Width: 0, Height: 20);
+      }
+
+      $C.@TextButton #BuyMedkit {
         Anchor: (...@Anchor, Width: 130, Height: 30);
         Text: "Buy";
         Disabled: false;

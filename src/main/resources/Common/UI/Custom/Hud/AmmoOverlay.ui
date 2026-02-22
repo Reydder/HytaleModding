@@ -2,13 +2,23 @@ $Common = "../Common.ui";
 
 Group #AmmoOverlay {
     Anchor: (Full: 0);
-    Padding: (Full: 40);
-    LayoutMode: MiddleCenter;
+    Padding: (Horizontal: 100);
+    LayoutMode: Bottom;
 
+    Group {
+        Anchor: (Left: 0, Right: 0, Height: 200);
+        LayoutMode: Full;
 
-    Label #AmmoIndicatior {
-        Style: (FontSize: 20, RenderBold: true);
-        Anchor: (Top: 700);
-        Text: "Hello world";
+        Label #AmmoIndicatior {
+            Style: (FontSize: 20, RenderBold: true, HorizontalAlignment: Center);
+            Anchor: (Left: 0, Right: 0);
+            Text: "Hello world";
+        }
+
+        Label #PointsIndicator {
+            Style: (FontSize: 20, RenderBold: true, HorizontalAlignment: End);
+            Anchor: (Left: 0, Right: 0);
+            Text: "0";
+        }
     }
 }

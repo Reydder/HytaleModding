@@ -21,6 +21,7 @@ import com.reydder.poison.PoisonCommand;
 import com.reydder.poison.PoisonComponent;
 import com.reydder.shop.Instructions.Actions.BuilderActionOpenWeaponShop;
 import com.reydder.shop.commands.OpenShopCommand;
+import com.reydder.shop.systems.EnemyDamageSystem;
 import com.reydder.spawn.commands.NextRoundCommand;
 import com.reydder.spawn.commands.ResetRoundCommand;
 import com.reydder.spawn.commands.StartRoundCommand;
@@ -67,6 +68,7 @@ public class MyPlugin extends JavaPlugin {
         this.getCommandRegistry().registerCommand(new UpdateGUICommand());
 
         this.getEntityStoreRegistry().registerSystem(new UpdateAmmoIndicatorSystem());
+        this.getEntityStoreRegistry().registerSystem(new EnemyDamageSystem());
 
         this.getCodecRegistry(Interaction.CODEC).register("ReloadInteraction", ReloadInteraction.class, ReloadInteraction.getCODEC());
         this.getCodecRegistry(Interaction.CODEC).register("ReloadCondition", ReloadConditionInteraction.class, ReloadConditionInteraction.getCODEC());

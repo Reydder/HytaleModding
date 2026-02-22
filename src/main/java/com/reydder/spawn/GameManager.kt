@@ -144,6 +144,7 @@ class GameManager private constructor() {
         //HytaleLogger.getLogger().atInfo().log("Spawn Time Interval reset to ${spawnTimeInterval}")
     }
 
+    @Synchronized
     fun reset(game: String, store: Store<EntityStore?>) {
         round = 0
 
