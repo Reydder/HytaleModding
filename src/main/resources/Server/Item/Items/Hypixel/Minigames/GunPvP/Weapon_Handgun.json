@@ -13,43 +13,67 @@
     "Primary": {
       "Cooldown": {
         "Id": "Shoot",
-        "Cooldown": 0.05
+        "Cooldown": 0.35
       },
       "Interactions": [
         {
-          "Type": "ModifyInventory",
-          "ItemToRemove": {
-            "Id": "Weapon_Arrow_Crude",
-            "Quantity": 1
+          "Type": "StatsCondition",
+          "Costs": {
+            "Handgun_Ammo": 0.1
           },
-          "Next": {
-            "Parent": "Gun_Shoot",
-            "RunTime": 0,
-            "Effects": {
-              "ItemAnimationId": "Shoot",
-              "CameraEffect": "Handgun_Shoot",
-              "Particles": [
-                {
-                  "SystemId": "RifleShooting",
-                  "PositionOffset": {
-                    "Z": 0.35,
-                    "Y": 0.15
-                  },
-                  "RotationOffset": {
-                    "Pitch": 90
-                  }
-                }
-              ],
-              "WorldSoundEventId": "SFX_Handgun_Fire",
-              "LocalSoundEventId": "SFX_Handgun_Fire_Local"
-            },
-            "ProjectileId": "GunPvP_Handgun_Bullet"
+          "Next": "Handgun_Gun_Shoot",
+          "Failed": "Gun_Shoot_Fail",
+          "Lenient": false
+        },
+        {
+          "Type": "ChangeStat",
+          "StatModifiers": {
+            "Handgun_Ammo": -1
           },
-          "Failed": "Gun_Shoot_Fail"
+          "Behaviour": "Add"
         }
       ]
     },
-    "Secondary": "Gun_Attack"
+    "Secondary": "Gun_Attack",
+    "Ability3": {
+      "Cooldown": {
+        "Id": "Reload",
+        "Cooldown": 0.5
+      },
+      "Interactions": [
+        {
+          "Type": "ReloadCondition",
+          "Next": {
+            "Type": "Simple",
+            "Effects": {
+              "ItemPlayerAnimationsId": "Handgun",
+              "ItemAnimationId": "Reload"
+            },
+            "RunTime": 0.5,
+            "Next": {
+              "Type": "ReloadInteraction",
+              "StatToCheck": {
+                "Handgun_Ammo": 0
+              },
+              "StatToReload": {
+                "Handgun_Ammo": 0
+              }
+            },
+            "Rules": {
+              "InterruptedBy": [
+                "Primary",
+                "Secondary"
+              ]
+            }
+          },
+          "Failed": "Gun_Shoot_Fail",
+          "StatToCheck": {
+            "Handgun_Ammo": 0
+          }
+        }
+      ],
+      "RequireNewClick": true
+    }
   },
   "InteractionVars": {
     "Gun_Swing_Left_Effect": "Gun_Swing_Left_Effect",

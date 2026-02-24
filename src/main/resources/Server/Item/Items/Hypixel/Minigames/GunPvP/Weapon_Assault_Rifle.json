@@ -61,7 +61,13 @@
             },
             "RunTime": 1,
             "Next": {
-              "Type": "ReloadInteraction"
+              "Type": "ReloadInteraction",
+              "StatToCheck": {
+                "Rifle_Ammo": 0
+              },
+              "StatToReload": {
+                "Rifle_Ammo": 0
+              }
             },
             "Rules": {
               "InterruptedBy": [
@@ -70,7 +76,10 @@
               ]
             }
           },
-          "Failed": "Gun_Shoot_Fail"
+          "Failed": "Gun_Shoot_Fail",
+          "StatToCheck": {
+            "Rifle_Ammo": 0
+          }
         }
       ],
       "RequireNewClick": true

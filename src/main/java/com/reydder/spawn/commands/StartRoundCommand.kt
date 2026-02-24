@@ -29,20 +29,21 @@ class StartRoundCommand: AbstractAsyncCommand("startround", "") {
 
                         val entityStatMap = store.getComponent(ref, EntityStatMap.getComponentType())
                         val pointsStatIndex = EntityStatType.getAssetMap()?.getIndex("Points")
-                        val ammoStatIndex = EntityStatType.getAssetMap()?.getIndex("Rifle_Ammo")
+                        val ammoStatIndex = EntityStatType.getAssetMap()?.getIndex("Handgun_Ammo")
                         pointsStatIndex?.let { pointsIndex ->
                             entityStatMap?.setStatValue(pointsIndex, 0F)
                         }
 
                         ammoStatIndex?.let { ammoIndex ->
-                            entityStatMap?.setStatValue(ammoIndex, 30F)
+                            val statValue = entityStatMap?.get(ammoIndex)
+                            entityStatMap?.setStatValue(ammoIndex, statValue?.max ?: 0F)
                         }
 
                         player.inventory.combinedHotbarFirst.forEach {index, stack ->
                             player.inventory.combinedHotbarFirst.removeItemStackFromSlot(index)
                         }
 
-                        val rifleItem = ItemStack("Weapon_Assault_Rifle")
+                        val rifleItem = ItemStack("Weapon_Handgun")
                         val bullets = ItemStack("Weapon_Bullet", 100)
 
                         player.inventory.combinedHotbarFirst.addItemStack(rifleItem)

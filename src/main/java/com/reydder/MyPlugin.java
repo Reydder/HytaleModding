@@ -71,7 +71,7 @@ public class MyPlugin extends JavaPlugin {
         this.getEntityStoreRegistry().registerSystem(new EnemyDamageSystem());
 
         this.getCodecRegistry(Interaction.CODEC).register("ReloadInteraction", ReloadInteraction.class, ReloadInteraction.getCODEC());
-        this.getCodecRegistry(Interaction.CODEC).register("ReloadCondition", ReloadConditionInteraction.class, ReloadConditionInteraction.getCODEC());
+        Interaction.CODEC.register("ReloadCondition", ReloadConditionInteraction.class, ReloadConditionInteraction.getCODEC());
 
         // Shop
         this.getCommandRegistry().registerCommand(new OpenShopCommand());

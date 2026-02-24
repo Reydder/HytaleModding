@@ -46,6 +46,7 @@ class WeaponsShopPage(playerRef: PlayerRef) : InteractiveCustomUIPage<ShopData>(
 
         val noPointsForBullets = points != null && points < BULLET_PRICE
         val noPointsForMedKit = points != null && points < MEDKIT_PRICE
+        val noPointsForRifle = points != null && points < RIFLE_PRICE
 
         val inventory = player.inventory.combinedHotbarFirst
 
@@ -59,12 +60,9 @@ class WeaponsShopPage(playerRef: PlayerRef) : InteractiveCustomUIPage<ShopData>(
         }
 
         uiCommandBuilder.append("Pages/WeaponShop.ui")
-        uiCommandBuilder.set("#BuyRifle.Disabled", hasRifle)
+        uiCommandBuilder.set("#BuyRifle.Disabled", noPointsForRifle || hasRifle)
         uiCommandBuilder.set("#BuyBullet.Disabled", noPointsForBullets)
         uiCommandBuilder.set("#BuyMedkit.Disabled", noPointsForMedKit)
-
-        // TODO: Remove when this when alm weapons implemented
-        uiCommandBuilder.set("#RifleItem.Visible", false)
 
         // Events
         uiEventBuilder.addEventBinding(CustomUIEventBindingType.Activating, "#BuyBullet", EventData().append("ItemId", "Weapon_Bullet"))

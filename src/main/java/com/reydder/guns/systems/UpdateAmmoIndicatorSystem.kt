@@ -28,7 +28,8 @@ class UpdateAmmoIndicatorSystem: EntityTickingSystem<EntityStore>() {
 
         val entityStatMap = archetyeChunk.getComponent(index, EntityStatMap.getComponentType())
 
-        val ammoStatIndex = EntityStatType.getAssetMap().getIndex("Rifle_Ammo")
+        val rifleAmmoStatIndex = EntityStatType.getAssetMap().getIndex("Rifle_Ammo")
+        val handgunAmmoStatIndex = EntityStatType.getAssetMap().getIndex("Handgun_Ammo")
         val pointsStatIndex = EntityStatType.getAssetMap().getIndex("Points")
 
         var bulletsAccount = 0
@@ -45,7 +46,16 @@ class UpdateAmmoIndicatorSystem: EntityTickingSystem<EntityStore>() {
                 playerRef,
                 AmmoIndicator(
                     playerRef = playerRef,
-                    text = "${entityStatMap?.get(ammoStatIndex)?.get()?.toInt()?.toString()}/$bulletsAccount",
+                    text = "${entityStatMap?.get(rifleAmmoStatIndex)?.get()?.toInt()?.toString()}/$bulletsAccount",
+                    points = entityStatMap?.get(pointsStatIndex)?.get() ?: 0F
+                )
+            )
+        } else if (inventory.activeHotbarItem?.itemId == "Weapon_Handgun") {
+            player.hudManager.setCustomHud(
+                playerRef,
+                AmmoIndicator(
+                    playerRef = playerRef,
+                    text = "${entityStatMap?.get(handgunAmmoStatIndex)?.get()?.toInt()?.toString()}/$bulletsAccount",
                     points = entityStatMap?.get(pointsStatIndex)?.get() ?: 0F
                 )
             )
