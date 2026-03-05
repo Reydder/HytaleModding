@@ -17,10 +17,6 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation(files("../../hytale_server/Server/HytaleServer.jar"))
     testImplementation(kotlin("test"))
-
-    // Mod implementations
-    //implementation(files("./mods/ZombiesGame.jar"))
-    //implementation(files("./mods/MultipleHUD-1.0.5.jar"))
 }
 
 tasks.test {
