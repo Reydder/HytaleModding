@@ -29,7 +29,7 @@
     ]
   },
   "IconProperties": {
-    "Scale": 2,
+    "Scale": 1.5,
     "Rotation": [
       76,
       72,
@@ -42,7 +42,7 @@
   },
   "Model": "Items/Projectiles/Items/Bullet/Bullet_Blunderbuss.blockymodel",
   "Texture": "Items/Projectiles/Items/Bullet/Bullet_Blunderbuss_Texture.png",
-  "Icon": "Icons/ItemsGenerated/bullet.png",
+  "Icon": "Icons/ItemsGenerated/Weapon_Bullet.png",
   "MaxStack": 100,
   "DroppedItemAnimation": "Items/Animations/Dropped/Dropped_Diagonal_Left.blockyanim",
   "ItemSoundSetId": "ISS_Default",

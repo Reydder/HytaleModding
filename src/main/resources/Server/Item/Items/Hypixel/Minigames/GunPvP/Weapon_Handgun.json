@@ -116,5 +116,6 @@
       "Weapon"
     ]
   },
-  "Weapon": {}
+  "Weapon": {},
+  "Reticle": "Handgun_Reticle"
 }
