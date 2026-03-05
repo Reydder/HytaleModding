@@ -12,8 +12,8 @@ import java.util.concurrent.CompletableFuture
 
 class StartRoundCommand: AbstractAsyncCommand("startround", "") {
     override fun executeAsync(context: CommandContext): CompletableFuture<Void?> {
-        val ref = context.senderAsPlayerRef()
-        val store = ref?.store
+        val senderRef = context.senderAsPlayerRef()
+        val store = senderRef?.store
         val world = store?.getExternalData()?.world
 
         HytaleLogger.getLogger().atInfo().log("Round started at Thread: ${Thread.currentThread().name}")
@@ -21,15 +21,16 @@ class StartRoundCommand: AbstractAsyncCommand("startround", "") {
         if (store != null && world != null) {
             return this.runAsync(context, {
                 HytaleLogger.getLogger().atInfo().log("Round started at Thread: ${Thread.currentThread().name}")
-                GameManager.get().startGame(world.name)
                 store.forEachEntityParallel { index, archeTypeChunk, commandBuffer ->
                     world.execute {
-                        val player = store.getComponent(ref, Player.getComponentType())
+                        val playerRef = archeTypeChunk.getReferenceTo(index)
+                        val player = store.getComponent(playerRef, Player.getComponentType())
                         if (player == null) return@execute
 
-                        val entityStatMap = store.getComponent(ref, EntityStatMap.getComponentType())
+                        val entityStatMap = store.getComponent(playerRef, EntityStatMap.getComponentType())
                         val pointsStatIndex = EntityStatType.getAssetMap()?.getIndex("Points")
                         val ammoStatIndex = EntityStatType.getAssetMap()?.getIndex("Handgun_Ammo")
+
                         pointsStatIndex?.let { pointsIndex ->
                             entityStatMap?.setStatValue(pointsIndex, 0F)
                         }
@@ -39,16 +40,17 @@ class StartRoundCommand: AbstractAsyncCommand("startround", "") {
                             entityStatMap?.setStatValue(ammoIndex, statValue?.max ?: 0F)
                         }
 
-                        player.inventory.combinedHotbarFirst.forEach {index, stack ->
-                            player.inventory.combinedHotbarFirst.removeItemStackFromSlot(index)
+                        player.inventory.combinedHotbarFirst.forEach { hotbarIndex, _ ->
+                            player.inventory.combinedHotbarFirst.removeItemStackFromSlot(hotbarIndex)
                         }
 
-                        val rifleItem = ItemStack("Weapon_Handgun")
+                        val handgunItem = ItemStack("Weapon_Handgun")
                         val bullets = ItemStack("Weapon_Bullet", 100)
 
-                        player.inventory.combinedHotbarFirst.addItemStack(rifleItem)
+                        player.inventory.combinedHotbarFirst.addItemStack(handgunItem)
                         player.inventory.combinedHotbarFirst.addItemStack(bullets)
                     }
+                    GameManager.get().startGame(world.name)
                 }
             }, world)
         }
